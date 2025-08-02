@@ -120,9 +120,67 @@ ASSEMBLY AND DISASSEMBLY
   <img width="1558" height="611" alt="DISASSEMBLY" src="https://github.com/user-attachments/assets/b7d15494-36cc-45ad-8c17-38c33a1556dc" />
 
 
-***Program Implemented: max_array.c
-
-      
- 
+***Program Implemented: max_array.c***  
 
 
+       riscv64-unknown-elf-gcc -O2 -Wall -march=rv64imac -mabi=lp64 \
+      -DBUILD_EPOCH=$(date +%s) \
+      -DUSERNAME="\"$(id -un)\"" -DHOSTNAME="\"$(hostname -s)\"" \
+       max_array.c -o max_array
+
+Running on Spike   
+
+       spike pk ./max_array
+  <img width="791" height="337" alt="SPIKE_MAX_ARRAY" src="https://github.com/user-attachments/assets/0ec91637-367a-4683-8aa2-91e6cb5f8d1e" />
+
+       
+ASSEMBLY AND DISASSEMBLY  
+
+
+       riscv64-unknown-elf-gcc -O0 -S max_array.c -o max_array.s
+       riscv64-unknown-elf-objdump -d ./max_array | sed -n '/<main>:/,/^$/p' | tee max_array_main_objdump.txt
+<img width="1097" height="786" alt="DISASSEMBLY_MAX_ARRAY" src="https://github.com/user-attachments/assets/0e882ca3-72f6-4a50-8906-a36b7cdd889b" />
+
+***Program Implemented:bitops.c***   
+
+        riscv64-unknown-elf-gcc -O0 -g -march=rv64imac -mabi=lp64 \
+       -DUSERNAME="\"$U\"<img width="766" height="351" alt="bubble_sort_spike" src="https://github.com/user-attachments/assets/b00d310e-7f41-451f-9676-3274f202ca78" />
+" -DHOSTNAME="\"$H\"" -DMACHINE_ID="\"$M\"" \
+        DBUILD_UTC="\"$T\"" -DBUILD_EPOCH=$E \
+        bitops.c -o bitops 
+   
+Running on Spike   
+
+       spike pk ./bitops
+       
+   <img width="2232" height="443" alt="BITOPS" src="https://github.com/user-attachments/assets/5f4f9347-7532-4644-98c2-b397eaa6250c" />
+
+ASSEMBLY AND DISASSEMBLY 
+
+          riscv64-unknown-elf-gcc -O0 -S bitops.c -o bitops.s
+          riscv64-unknown-elf-objdump -d ./bitops | sed -n '/<main>:/,/^$/p' | tee bitops_main_objdump.txt
+       
+     
+<img width="1567" height="788" alt="DISASSEMBLY_BITOPS" src="https://github.com/user-attachments/assets/d5aaf99a-4746-407d-948e-8ed1a899d402" />
+
+
+***Program Implemented: bubble_sort.c***    
+
+        riscv64-unknown-elf-gcc -O2 -Wall -march=rv64imac -mabi=lp64 \
+        -DBUILD_EPOCH=$(date +%s) \
+        -DUSERNAME="\"$(id -un)\"" -DHOSTNAME="\"$(hostname -s)\"" \
+        bubble_sort.c -o bubble_sort
+        
+Running on Spike   
+
+       spike pk ./bitops
+
+<img width="766" height="351" alt="bubble_sort_spike" src="https://github.com/user-attachments/assets/5572efa2-409b-400b-88a0-f5cd553a2a65" />
+
+ASSEMBLY AND DISASSEMBLY     
+
+
+       riscv64-unknown-elf-gcc -O0 -S bubble_sort.c -o bubble_sort.s 
+      riscv64-unknown-elf-objdump -d ./bubble_sort | sed -n '/<main>:/,/^$/p' | tee bubble_sort.txt
+
+  <img width="1142" height="1006" alt="BUBBLESORT_DISASSEMBLY" src="https://github.com/user-attachments/assets/243f445b-f422-445d-8aee-2f339ef1511e" />
