@@ -51,14 +51,14 @@ Installation of RISCV ISA Simulator - SPIKE
 
 Task 7:  
 
-    cd $pwd/riscv_toolchain
     git clone https://github.com/riscv/riscv-pk.git
     cd riscv-pk
+    git checkout v1.0.0 
     mkdir -p build && cd build  
     ../configure --prefix=$pwd/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14 --host=riscv64-unknown-elf  
     make -j$(nproc)
     sudo make install
-  
+    cd $pwd/riscv_toolchain
   
    
    
