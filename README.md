@@ -78,8 +78,51 @@ Ensure the cross bin directory is in PATH
  <img width="2158" height="187" alt="Screenshot from 2025-08-02 16-08-09" src="https://github.com/user-attachments/assets/6f37cade-f955-48d3-ba1f-4b9248520aae" />
 <img width="434" height="138" alt="Screenshot from 2025-08-02 16-08-24" src="https://github.com/user-attachments/assets/462883ab-3d6b-4605-a9da-13f383e28d95" />
 
+***TASK 2 : RUN DISASSEMBLE DECODE***  
 
- 
+GOALS  
+
+  **To run C programs and compile using Local Toolchain and spike simulator  
+  
+  **To generate assembly code  
+  
+  **To decode RISCV integer instructions.  
+  
+----->>  SPIKE VERSION  
+
+
+  <img width="695" height="69" alt="Screenshot from 2025-08-02 18-08-17" src="https://github.com/user-attachments/assets/ea944b04-9bf3-4e3d-8886-4f48b221d63e" />   
+    
+----->> OUTPUT OF  riscv64-unknown-elf-gcc -v     
+
+      riscv64-unknown-elf-gcc -v
+  <img width="2478" height="273" alt="elf_version" src="https://github.com/user-attachments/assets/6c1051b3-02ed-424c-a8e0-4d9f46b29d8a" />
+
+
+  ***Program Implemented : factorial.c***    
+
+      
+   
+      riscv64-unknown-elf-gcc -O0 -g -march=rv64imac -mabi=lp64 \
+     -DUSERNAME="\"$U\"" -DHOSTNAME="\"$H\"" -DMACHINE_ID="\"$M\"" \
+      DBUILD_UTC="\"$T\"" -DBUILD_EPOCH=$E \
+     factorial.c -o factorial 
+SPIKE SIMULATOR  
+     
+     spike pk ./factorial
+  
+<img width="777" height="336" alt="FACT_UNIQUE" src="https://github.com/user-attachments/assets/e84b4f17-c239-47b6-9e35-7feb2d52001a" />
+
+ASSEMBLY AND DISASSEMBLY   
+
+     riscv64-unknown-elf-gcc -O0 -S factorial.c -o factorial.s
+     riscv64-unknown-elf-objdump -d ./factorial | sed -n '/<main>:/,/^$/p' | tee factorial_main_objdump.txt 
+  <img width="1558" height="611" alt="DISASSEMBLY" src="https://github.com/user-attachments/assets/b7d15494-36cc-45ad-8c17-38c33a1556dc" />
+
+
+***Program Implemented: max_array.c
+
+      
  
 
 
